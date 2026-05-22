@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B-Roll Checklist — Laptop Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#0B1833;
+  --navy2:#162B55;
+  --accent:#C8880A;
+  --accentL:#E8A020;
+  --green:#22C55E;
+  --bg:#EDF1F8;
+  --card:#FFFFFF;
+  --text:#0B1833;
+  --textM:#476090;
+  --textFaint:#8A9BB5;
+  --border:#D6DFF0;
+  --hover:#F5F8FF;
+  --doneB:#F0FBF4;
+  --doneT:#9BB5A5;
+}
+
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--navy);padding:18px 36px;position:sticky;top:0;z-index:200;border-bottom:3px solid var(--accent)}
+.hdr-in{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:24px}
+.hdr-title{flex-shrink:0}
+.hdr-title h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;color:#fff;letter-spacing:4px;text-transform:uppercase;line-height:1}
+.hdr-title p{font-size:9px;font-weight:600;color:var(--accentL);letter-spacing:2.5px;text-transform:uppercase;margin-top:4px}
+.hdr-prog{flex:1;min-width:0}
+.hdr-prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.hdr-prog-lbl{font-size:9px;font-weight:600;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase}
+.hdr-prog-val{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;color:var(--accentL)}
+.hdr-track{height:5px;background:rgba(255,255,255,0.12);border-radius:3px;overflow:hidden}
+.hdr-fill{height:100%;background:var(--accentL);border-radius:3px;transition:width .4s ease;width:0%}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:.3px;padding:7px 13px;border-radius:7px;cursor:pointer;border:none;transition:all .18s}
+.btn-g{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
+.btn-g:hover{background:rgba(255,255,255,.18);color:#fff}
+.btn-a{background:var(--accent);color:#fff}
+.btn-a:hover{background:var(--accentL)}
+
+/* MAIN */
+.main{max-width:1440px;margin:0 auto;padding:26px 36px 48px}
+
+.pg-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:3px;color:var(--textFaint);text-transform:uppercase;margin-bottom:16px;padding-bottom:9px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.pg-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+
+/* SECTION CARD */
+.sc{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s}
+.sc:hover{box-shadow:0 4px 18px rgba(11,24,51,.09)}
+
+.sc-hd{background:var(--navy);padding:11px 15px 9px}
+.sc-hd-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sc-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:rgba(255,255,255,.18);line-height:1;letter-spacing:-1px;flex-shrink:0;min-width:38px}
+.sc-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#fff;letter-spacing:1.8px;text-transform:uppercase;flex:1;line-height:1.3}
+.sc-all{background:none;border:none;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);cursor:pointer;padding:2px 0;transition:color .15s}
+.sc-all:hover{color:var(--accentL)}
+
+.sc-pb-row{display:flex;align-items:center;gap:8px}
+.sc-pb-track{flex:1;height:3px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.sc-pb-fill{height:100%;background:var(--accentL);border-radius:2px;transition:width .3s ease;width:0%}
+.sc-pb-txt{font-size:9px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.5px;min-width:26px;text-align:right}
+
+/* ITEMS */
+.sc-body{padding:3px 0}
+.ci{display:flex;align-items:center;gap:9px;padding:7px 13px;cursor:pointer;transition:background .12s;border-bottom:1px solid transparent;user-select:none;-webkit-user-select:none}
+.ci:hover{background:var(--hover)}
+.ci.done{background:var(--doneB)}
+.ci:not(:last-child){border-bottom-color:#EEF2FC}
+
+.chk{width:15px;height:15px;border:1.5px solid #BECCDE;border-radius:4px;flex-shrink:0;position:relative;transition:all .18s;background:#fff}
+.ci.done .chk{background:var(--green);border-color:var(--green)}
+.ci.done .chk::before{content:'';position:absolute;left:3px;top:0;width:4px;height:8px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+.ci:hover .chk{border-color:var(--navy2)}
+
+.ci-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--textFaint);min-width:14px;flex-shrink:0}
+.ci-txt{font-size:13px;font-weight:400;color:var(--text);line-height:1.35;transition:color .18s}
+.ci.done .ci-txt{color:var(--doneT);text-decoration:line-through;text-decoration-color:var(--doneT)}
+
+/* 2-col items for cinematic */
+.items2c{display:grid;grid-template-columns:1fr 1fr}
+.items2c .ci:not(:last-child){border-bottom-color:#EEF2FC}
+
+/* Extra shots */
+.ex-row{display:flex;align-items:center;gap:9px;padding:7px 13px;border-bottom:1px solid #EEF2FC}
+.ex-row:last-child{border-bottom:none}
+.ex-num{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:var(--textFaint);min-width:14px;flex-shrink:0}
+.ex-inp{flex:1;border:none;border-bottom:1px solid #D6DFF0;background:transparent;font-family:'Outfit',sans-serif;font-size:13px;color:var(--text);padding:3px 2px;outline:none;transition:border-color .18s}
+.ex-inp::placeholder{color:#C8D3E8;font-style:italic}
+.ex-inp:focus{border-color:var(--navy2)}
+.ex-chk{width:15px;height:15px;border:1.5px solid #BECCDE;border-radius:4px;flex-shrink:0;position:relative;transition:all .18s;background:#fff;cursor:pointer}
+.ex-chk.done{background:var(--green);border-color:var(--green)}
+.ex-chk.done::before{content:'';position:absolute;left:3px;top:0;width:4px;height:8px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+
+/* NOTES */
+.notes-card{background:var(--card);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:12px}
+.notes-ta{width:100%;min-height:100px;border:none;padding:13px 15px;font-family:'Outfit',sans-serif;font-size:13.5px;color:var(--text);resize:vertical;outline:none;line-height:1.65;background:var(--card)}
+.notes-ta::placeholder{color:var(--textFaint);font-style:italic}
+
+/* TIP */
+.tip{background:var(--navy);border-radius:10px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px}
+.tip-ico{font-size:20px;flex-shrink:0;margin-top:2px}
+.tip-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;letter-spacing:2.5px;color:var(--accentL);text-transform:uppercase;margin-bottom:3px}
+.tip-txt{font-size:12.5px;font-weight:400;color:rgba(255,255,255,.7);line-height:1.55}
+
+/* PRINT */
+@media print{
+  .hdr{position:static;border-bottom:2px solid #0B1833}
+  .hdr-btns,.sc-all{display:none!important}
+  body{background:#fff}
+  .sc{box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .main{padding:16px}
+  .grid4{grid-template-columns:repeat(4,1fr)!important}
+  .grid2{grid-template-columns:repeat(2,1fr)!important}
+}
+
+@media(max-width:1100px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){
+  .grid4,.grid2{grid-template-columns:1fr}
+  .items2c{grid-template-columns:1fr}
+  .main{padding:14px}
+  .hdr{padding:12px 16px}
+  .hdr-in{flex-wrap:wrap;gap:10px}
+  .hdr-title h1{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-in">
+    <div class="hdr-title">
+      <h1>B-Roll <span style="color:var(--accentL)">Checklist</span></h1>
+      <p>Laptop / Tech Review</p>
+    </div>
+    <div class="hdr-prog">
+      <div class="hdr-prog-top">
+        <span class="hdr-prog-lbl">Overall Progress</span>
+        <span class="hdr-prog-val" id="ov-count">0 / 0</span>
+      </div>
+      <div class="hdr-track"><div class="hdr-fill" id="ov-fill"></div></div>
+    </div>
+    <div class="hdr-btns">
+      <button class="btn btn-g" onclick="resetAll()">↺ Reset</button>
+      <button class="btn btn-a" onclick="window.print()">⎙ Print</button>
+    </div>
+  </div>
+</div>
+
+<main class="main" id="root"></main>
+
+<script>
+const S=[
+  {id:1,t:"OUTER DESIGN & BUILD",items:["Top Lid Close-up","Lid Opening (One-hand)","Back Panel Overview","Back Panel Open","Side Profile","Hinge Mechanism","In-hand Feel","Weight Check","On Sofa / Table Shots","Vent Close-up","Exhaust Air Shot","Chassis Texture Shot","Bottom Panel Shot","Logo Reflection Shot","Thinness Comparison Shot"]},
+  {id:2,t:"KEYBOARD AREA",items:["Top-down Shot","Key Travel Demo","RGB Lighting","RGB Animation Sweep","Power Button","Special Function Keys","Typing Shot","Keyboard Flex Test","WASD Close-up","Side Typing Angle"]},
+  {id:3,t:"TRACKPAD & INPUT",items:["Trackpad Gestures","Click Sound","Palm Rest Area","Cursor Precision Test","Multi-touch Gesture Demo"]},
+  {id:4,t:"PORTS & CONNECTIVITY",items:["All Ports Overview","Inserting Cables","USB Type-C Charging","External Monitor Setup"]},
+  {id:5,t:"DISPLAY & VISUALS",items:["Display Close-up","Movies Playback","Netflix HDR Playback","YouTube Playback","Content Watching","Timeline Scrubbing","Fast Scrolling Demo","Viewing Angle Test","Fullscreen Gaming Visual","Cursor Movement Macro","Music Playback (Visual)","Spotify / Audio Playback"]},
+  {id:6,t:"PERFORMANCE & SYSTEM VISUALS",items:["Task Manager Overview","CPU Usage View","GPU Usage View","RAM Usage View","Disk Usage View","Network Usage View"]},
+  {id:7,t:"CAMERA & PRIVACY",items:["Webcam Visual Shot","E-Shutter / Privacy Cover"]},
+  {id:8,t:"ACCESSORIES",items:["Power Brick & Cable","Adaptor / Dongle","Box Contents","Charger Size Comparison","Cable Length Shot"]},
+  {id:9,t:"LIFESTYLE USAGE",numbered:true,items:["On Desk Setup","Working / Typing","Studying / Note Taking","Editing / Creative Work","Watching Movies / Shows","Gaming Session","On Couch / Relaxing","In Different Lighting","Outdoor Usage (If Possible)","Travel / Bag Packing","Day-to-Night Transition Shots"]},
+  {id:10,t:"CINEMATIC UTILITY SHOTS",numbered:true,twocol:true,items:["Slow Motion Shots (Opening, Closing, Typing)","Macro Shots (Keys, Vents, Logo)","Rack Focus Shots","Light Reflection / RGB Reflections","Atmospheric Shots (Plants, Lights, Desk Setup)","Product in Frame Transitions","Handheld Movement Shots","Top Angle / Flat Lay Shots","Close-up Texture Transitions","Bokeh Background Shots","Silhouette Shots","Power On / Boot-up Cinematic Shot","Screen Glow in Dark Room","Fan Spin Close-up (If Visible)","Exhaust Air Distortion Shot","Cinematic Pan / Tilt Shots","Slow Push-in / Push-out Shots"]},
+  {id:11,t:"OPTIONAL ADD-ONS",numbered:true,items:["Unboxing (If Applicable)","First Boot Experience","Packaging Close-ups","Sticker / Branding Close-ups","Startup Screen / Logo","Software UI Close-ups","Before / After Comparison Shots","Extra B-roll (Miscellaneous)"]},
+  {id:12,t:"EXTRA SHOTS (ANYTHING ELSE)",extra:true,count:8}
+];
+
+const state={};
+S.forEach(s=>{
+  const n=s.extra?s.count:s.items.length;
+  for(let i=0;i<n;i++) state[s.id+'-'+i]=false;
+});
+
+function toggle(sid,i){
+  const k=sid+'-'+i, v=!state[k];
+  state[k]=v;
+  document.getElementById('ci-'+sid+'-'+i).classList.toggle('done',v);
+  updSec(sid); updAll();
+}
+
+function toggleEx(sid,i){
+  const k=sid+'-'+i, v=!state[k];
+  state[k]=v;
+  document.getElementById('ex-'+sid+'-'+i).classList.toggle('done',v);
+  updSec(sid); updAll();
+}
+
+function markAll(sid){
+  const s=S.find(x=>x.id===sid);
+  const n=s.extra?s.count:s.items.length;
+  const allD=Array.from({length:n},(_,i)=>state[sid+'-'+i]).every(Boolean);
+  for(let i=0;i<n;i++){
+    state[sid+'-'+i]=!allD;
+    const el=s.extra?document.getElementById('ex-'+sid+'-'+i):document.getElementById('ci-'+sid+'-'+i);
+    if(el) el.classList.toggle('done',!allD);
+  }
+  updSec(sid); updAll();
+}
+
+function updSec(sid){
+  const s=S.find(x=>x.id===sid);
+  const n=s.extra?s.count:s.items.length;
+  const d=Array.from({length:n},(_,i)=>state[sid+'-'+i]).filter(Boolean).length;
+  const f=document.getElementById('pf-'+sid), t=document.getElementById('pt-'+sid);
+  if(f) f.style.width=(n>0?d/n*100:0)+'%';
+  if(t) t.textContent=d+'/'+n;
+}
+
+function updAll(){
+  const total=Object.keys(state).length;
+  const done=Object.values(state).filter(Boolean).length;
+  document.getElementById('ov-fill').style.width=(total>0?done/total*100:0)+'%';
+  document.getElementById('ov-count').textContent=done+' / '+total;
+}
+
+function resetAll(){
+  if(!confirm('Reset all checkboxes?')) return;
+  Object.keys(state).forEach(k=>state[k]=false);
+  document.querySelectorAll('.ci.done').forEach(e=>e.classList.remove('done'));
+  document.querySelectorAll('.ex-chk.done').forEach(e=>e.classList.remove('done'));
+  S.forEach(s=>{
+    const n=s.extra?s.count:(s.items?s.items.length:0);
+    const f=document.getElementById('pf-'+s.id), t=document.getElementById('pt-'+s.id);
+    if(f) f.style.width='0%';
+    if(t) t.textContent='0/'+n;
+  });
+  updAll();
+}
+
+function renderCard(s){
+  const n=s.extra?s.count:s.items.length;
+  let body='';
+  if(s.extra){
+    for(let i=0;i<s.count;i++){
+      body+=`<div class="ex-row">
+        <span class="ex-num">${i+1}</span>
+        <input class="ex-inp" type="text" placeholder="Describe your shot...">
+        <div class="ex-chk" id="ex-${s.id}-${i}" onclick="toggleEx(${s.id},${i})"></div>
+      </div>`;
+    }
+  } else {
+    const mkRow=(txt,i)=>`<div class="ci" id="ci-${s.id}-${i}" onclick="toggle(${s.id},${i})">
+      <div class="chk"></div>
+      ${s.numbered?`<span class="ci-num">${i+1}</span>`:''}
+      <span class="ci-txt">${txt}</span>
+    </div>`;
+    if(s.twocol){
+      body=`<div class="items2c">${s.items.map(mkRow).join('')}</div>`;
+    } else {
+      body=s.items.map(mkRow).join('');
+    }
+  }
+
+  return `<div class="sc">
+    <div class="sc-hd">
+      <div class="sc-hd-row">
+        <span class="sc-num">${String(s.id).padStart(2,'0')}</span>
+        <span class="sc-title">${s.t}</span>
+        <button class="sc-all" onclick="markAll(${s.id});event.stopPropagation()">ALL</button>
+      </div>
+      <div class="sc-pb-row">
+        <div class="sc-pb-track"><div class="sc-pb-fill" id="pf-${s.id}"></div></div>
+        <span class="sc-pb-txt" id="pt-${s.id}">0/${n}</span>
+      </div>
+    </div>
+    <div class="sc-body">${body}</div>
+  </div>`;
+}
+
+function render(){
+  document.getElementById('root').innerHTML=`
+    <div class="pg-lbl">Page 1 of 2 — Hardware &amp; System Shots</div>
+    <div class="grid4">${S.slice(0,4).map(renderCard).join('')}</div>
+    <div class="grid4" style="margin-bottom:28px">${S.slice(4,8).map(renderCard).join('')}</div>
+
+    <div class="pg-lbl">Page 2 of 2 — Lifestyle, Cinematic &amp; Creative Shots</div>
+    <div class="grid2">${renderCard(S[8])}${renderCard(S[9])}</div>
+    <div class="grid2" style="margin-bottom:24px">${renderCard(S[10])}${renderCard(S[11])}</div>
+
+    <div class="notes-card">
+      <div class="sc-hd" style="padding:10px 15px">
+        <div class="sc-hd-row" style="margin-bottom:0">
+          <span class="sc-num" style="font-size:18px;min-width:auto;margin-right:2px">📋</span>
+          <span class="sc-title">NOTES / REMINDERS</span>
+        </div>
+      </div>
+      <textarea class="notes-ta" placeholder="Add shoot notes, reminders, or location details here..."></textarea>
+    </div>
+
+    <div class="tip">
+      <div class="tip-ico">📷</div>
+      <div>
+        <div class="tip-lbl">Tip</div>
+        <div class="tip-txt">Shoot in 4K 60fps where possible. Get multiple angles for every shot. More coverage = more editing options.</div>
+      </div>
+    </div>`;
+  updAll();
+}
+
+render();
+</script>
+</body>
+</html>
